@@ -2,7 +2,7 @@
 
 export class SpeechService {
   private synthesis: SpeechSynthesis;
-  private recognition: SpeechRecognition | null = null;
+  private recognition: any = null;
   private isListening = false;
 
   constructor() {
@@ -66,7 +66,7 @@ export class SpeechService {
 
     this.isListening = true;
 
-    this.recognition.onresult = (event: SpeechRecognitionEvent) => {
+    this.recognition.onresult = (event: any) => {
       let finalTranscript = '';
       let interimTranscript = '';
 
@@ -86,7 +86,7 @@ export class SpeechService {
       }
     };
 
-    this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+    this.recognition.onerror = (event: any) => {
       this.isListening = false;
       onError?.(`语音识别错误: ${event.error}`);
     };

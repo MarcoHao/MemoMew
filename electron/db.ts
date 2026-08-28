@@ -2,14 +2,14 @@ import Database from 'better-sqlite3';
 import path from 'path';
 import { app } from 'electron';
 
-let db: Database.Database | null = null;
+let db: any | null = null;
 
 export function getDatabasePath(): string {
   const userData = app.getPath('userData');
   return path.join(userData, 'memomew.db');
 }
 
-export function initDatabase(): Database.Database {
+export function initDatabase(): any {
   if (db) return db;
   
   const dbPath = getDatabasePath();
@@ -64,7 +64,7 @@ export function initDatabase(): Database.Database {
   return db;
 }
 
-export function getDB(): Database.Database {
+export function getDB(): any {
   if (!db) {
     throw new Error('Database not initialized');
   }
